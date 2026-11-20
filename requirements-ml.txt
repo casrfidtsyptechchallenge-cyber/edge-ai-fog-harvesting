@@ -1,3 +1,0 @@
-# Laptop only, for the models (python -m ml): not needed on the Pi or for the station's tests.
--r requirements.txt
-numpy>=1.26
