@@ -1,0 +1,63 @@
+{
+  "model": "arc-cnn-sim-20261116-s1",
+  "runs": 8,
+  "minutes": 30,
+  "rows": [
+    {
+      "arcs_per_h": 28.5,
+      "warnings_per_h": 0.0,
+      "faults_per_h": 8.25,
+      "mean_level": 0.206,
+      "capture": 0.201,
+      "label": "no predictor"
+    },
+    {
+      "arcs_per_h": 34.0,
+      "warnings_per_h": 38.75,
+      "faults_per_h": 4.75,
+      "mean_level": 0.408,
+      "capture": 0.393,
+      "label": "CNN 8 bits, warn at 0.7"
+    },
+    {
+      "arcs_per_h": 30.25,
+      "warnings_per_h": 52.0,
+      "faults_per_h": 4.25,
+      "mean_level": 0.445,
+      "capture": 0.443,
+      "label": "rule-based, warn at 0.7"
+    },
+    {
+      "arcs_per_h": 25.25,
+      "warnings_per_h": 75.0,
+      "faults_per_h": 2.75,
+      "mean_level": 0.497,
+      "capture": 0.485,
+      "label": "CNN 8 bits, warn at 0.5"
+    },
+    {
+      "arcs_per_h": 22.75,
+      "warnings_per_h": 74.25,
+      "faults_per_h": 2.5,
+      "mean_level": 0.498,
+      "capture": 0.513,
+      "label": "rule-based, warn at 0.5"
+    },
+    {
+      "arcs_per_h": 11.25,
+      "warnings_per_h": 160.0,
+      "faults_per_h": 0.25,
+      "mean_level": 0.58,
+      "capture": 0.595,
+      "label": "CNN 8 bits, warn at 0.3"
+    },
+    {
+      "arcs_per_h": 9.25,
+      "warnings_per_h": 113.75,
+      "faults_per_h": 0.25,
+      "mean_level": 0.588,
+      "capture": 0.603,
+      "label": "rule-based, warn at 0.3"
+    }
+  ]
+}

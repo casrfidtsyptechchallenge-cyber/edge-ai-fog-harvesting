@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "Not PFA",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": -0.18, "left": -5.03, "attrs": {} },
+    {
+      "type": "wokwi-hx711",
+      "id": "cell1",
+      "top": -74.2,
+      "left": 185,
+      "attrs": { "type": "5kg" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -101.6,
+      "left": -180.18,
+      "attrs": {}
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": 37.1, "left": 211, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot2", "top": 142.7, "left": 211, "attrs": {} },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 119.6, "left": -83.3, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "cell1:VCC", "esp:3V3.1", "red", [ "h0" ] ],
+    [ "cell1:SCK", "esp:5", "green", [ "h0" ] ],
+    [ "cell1:DT", "esp:4", "green", [ "h0" ] ],
+    [ "cell1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "pir1:VCC", "esp:3V3.2", "red", [ "v0" ] ],
+    [ "pir1:GND", "esp:GND.1", "black", [ "v240", "h124.54" ] ],
+    [ "pir1:OUT", "esp:7", "green", [ "v0" ] ],
+    [ "pot1:VCC", "esp:3V3.1", "red", [ "v0" ] ],
+    [ "pot1:SIG", "esp:2", "green", [ "v0" ] ],
+    [ "pot2:GND", "esp:GND.4", "black", [ "v0" ] ],
+    [ "pot2:SIG", "esp:1", "green", [ "v0" ] ],
+    [ "pot2:VCC", "esp:6", "red", [ "v0" ] ],
+    [ "pot1:GND", "esp:GND.3", "black", [ "v0" ] ],
+    [ "sw1:2", "esp:10", "green", [ "v0" ] ],
+    [ "sw1:1", "esp:GND.1", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

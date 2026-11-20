@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/wave.schema.json",
+  "title": "wave",
+  "description": "Raw collector-current window captured around an event. Debug and training data only; turn off in the final demo to save bandwidth.",
+  "x-topic": "aeroion/{node_id}/wave",
+  "x-direction": "node -> station",
+  "x-rate": "on ARC, ARC_PREDICTED, manual trigger, or NOVEL (a window unlike the arc predictor's training data, at most one every 10 s)",
+  "x-retain": false,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "node_id", "ts", "seq", "trigger", "fs_hz", "unit", "samples"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "node_id": {"$ref": "common.schema.json#/$defs/node_id"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms",
+           "description": "Time of the first sample."},
+    "seq": {"$ref": "common.schema.json#/$defs/seq"},
+    "trigger": {"$ref": "common.schema.json#/$defs/wave_trigger"},
+    "fs_hz": {"type": "integer", "minimum": 1, "maximum": 100000, "x-unit": "Hz",
+              "description": "Sampling frequency."},
+    "unit": {"const": "uA", "description": "Unit of the samples (ASCII u for micro)."},
+    "samples": {"type": "array", "items": {"type": "number"}, "minItems": 1, "maxItems": 4096}
+  }
+}

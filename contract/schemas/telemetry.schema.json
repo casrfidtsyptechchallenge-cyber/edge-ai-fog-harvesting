@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/telemetry.schema.json",
+  "title": "telemetry",
+  "description": "Periodic snapshot of one collector node. A sensor that is missing or failed reports null, never a fake 0.",
+  "x-topic": "aeroion/{node_id}/telemetry",
+  "x-direction": "node -> station",
+  "x-rate": "1 Hz",
+  "x-retain": false,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "node_id", "ts", "seq", "state", "hv_on", "hv_level", "fog_idx_opt",
+               "fog_idx_virt", "t_c", "rh_pct", "mass_g", "rate_gpm", "i_ua", "p_w", "e_wh", "arc_risk",
+               "health", "radar_presence", "lid_closed", "batt_pct"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "node_id": {"$ref": "common.schema.json#/$defs/node_id"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "seq": {"$ref": "common.schema.json#/$defs/seq"},
+    "buffered": {
+      "type": "boolean",
+      "description": "True when the message was stored while offline and is being replayed. Omitted means false."
+    },
+    "state": {"$ref": "common.schema.json#/$defs/state"},
+    "hv_on": {
+      "type": "boolean",
+      "description": "High voltage actually enabled by the safety core (M3)."
+    },
+    "hv_level": {
+      "$ref": "common.schema.json#/$defs/fraction",
+      "description": "Commanded HV level: 0 = off, 1 = module maximum."
+    },
+    "fog_idx_opt": {
+      "$ref": "common.schema.json#/$defs/nullable_fraction",
+      "description": "Fog index from the optical sensor: 0 = clear air, 1 = densest fog seen in calibration."
+    },
+    "fog_idx_virt": {
+      "$ref": "common.schema.json#/$defs/nullable_fraction",
+      "description": "Fog index estimated from the corona current (M5b virtual sensor). Null while HV is off."
+    },
+    "t_c": {
+      "type": ["number", "null"], "minimum": -40, "maximum": 85, "x-unit": "°C",
+      "description": "Air temperature at the inlet."
+    },
+    "rh_pct": {
+      "type": ["number", "null"], "minimum": 0, "maximum": 100, "x-unit": "%",
+      "description": "Relative humidity at the inlet."
+    },
+    "mass_g": {
+      "type": ["number", "null"], "x-unit": "g",
+      "description": "Water on the collector since the last TARE (load cell)."
+    },
+    "rate_gpm": {
+      "type": ["number", "null"], "x-unit": "g/min",
+      "description": "Collection rate, smoothed."
+    },
+    "i_ua": {
+      "type": ["number", "null"], "minimum": 0, "x-unit": "µA",
+      "description": "Collector current (corona current reaching ground)."
+    },
+    "p_w": {
+      "type": ["number", "null"], "minimum": 0, "x-unit": "W",
+      "description": "Electrical power drawn by the HV module."
+    },
+    "e_wh": {
+      "type": ["number", "null"], "minimum": 0, "x-unit": "Wh",
+      "description": "HV energy used since boot. With mass_g this gives grams per watt-hour. Null when no power sensor is installed."
+    },
+    "arc_risk": {
+      "$ref": "common.schema.json#/$defs/nullable_fraction",
+      "description": "Latest arc probability from the arc predictor (M5a). Null when the model is not running."
+    },
+    "arc_novel": {
+      "$ref": "common.schema.json#/$defs/nullable_fraction",
+      "description": "Optional (1.3). Share of the arc predictor's last 50 windows (5 s) unlike its training data (M5a novelty guard: clipped input, current out of the trained range, unusual shape). High: arc_risk is less trustworthy, the controller (M6) stops climbing. Absent or null while the HV is off."
+    },
+    "health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["onset_level", "k_coef", "score"],
+      "description": "Electrode health from the Townsend fit I = K·V·(V − V0) (M5c).",
+      "properties": {
+        "onset_level": {
+          "$ref": "common.schema.json#/$defs/nullable_fraction",
+          "description": "Estimated corona onset V0, in hv_level units. Rising onset means fouling or wear."
+        },
+        "k_coef": {
+          "type": ["number", "null"], "minimum": 0,
+          "description": "Estimated Townsend coefficient K, in µA per hv_level squared."
+        },
+        "score": {
+          "$ref": "common.schema.json#/$defs/nullable_fraction",
+          "description": "1 = like new, 0 = needs cleaning or replacement."
+        }
+      }
+    },
+    "radar_presence": {
+      "type": ["boolean", "null"],
+      "description": "Radar sees a person within the safety distance.Null when no radar is installed."
+    },
+    "lid_closed": {
+      "type": ["boolean", "null"],
+      "description": "Enclosure lid switch. Null when no lid switch is installed."
+    },
+    "batt_pct": {
+      "type": ["number", "null"], "minimum": 0, "maximum": 100, "x-unit": "%",
+      "description": "Battery charge. Null when the node runs on bench power."
+    }
+  }
+}

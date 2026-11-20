@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.2",
+  "ts": 1791747040265,
+  "type": "DISPENSE",
+  "data": {"card": "card 7", "litres": 20.0, "quota_left_l": 0.0, "end": "quota"}
+}

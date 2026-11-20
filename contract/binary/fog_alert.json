@@ -1,0 +1,17 @@
+{
+  "name": "FOG_ALERT",
+  "description": "Node-to-node broadcast over ESP-NOW (demo) or LoRa (field) when a node detects fog. Packed, little-endian.",
+  "magic": 174,
+  "version": 1,
+  "type": 1,
+  "fields": [
+    {"name": "magic",    "c": "uint8_t",  "py": "B", "desc": "Always 0xAE (174). Lets receivers ignore foreign packets."},
+    {"name": "version",  "c": "uint8_t",  "py": "B", "desc": "Binary format version, currently 1."},
+    {"name": "type",     "c": "uint8_t",  "py": "B", "desc": "Message type, 1 = FOG_ALERT."},
+    {"name": "node_num", "c": "uint8_t",  "py": "B", "desc": "Sender number: node n07 sends 7."},
+    {"name": "ts_ms",    "c": "uint64_t", "py": "Q", "desc": "Detection time, Unix ms UTC."},
+    {"name": "seq",      "c": "uint16_t", "py": "H", "desc": "Sender's alert counter, wraps at 65535."},
+    {"name": "fog_q",    "c": "uint8_t",  "py": "B", "desc": "Fog index × 255, rounded."},
+    {"name": "flags",    "c": "uint8_t",  "py": "B", "desc": "bit 0 = clock synced, bit 1 = detected by the virtual sensor, other bits 0."}
+  ]
+}

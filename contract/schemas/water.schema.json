@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/water.schema.json",
+  "title": "water",
+  "description": "State of the station's water point (M9): water quality and its verdict, the valve, the dispensing session, the filter. The valve can open only while the verdict is ok.",
+  "x-topic": "aeroion/station/water",
+  "x-direction": "station -> dashboard",
+  "x-rate": "every 5 s (every second while water flows), and at once on any change",
+  "x-retain": true,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ts", "quality", "valve_open", "session", "filter", "dispensed_today_l"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "quality": {"$ref": "#/$defs/quality"},
+    "valve_open": {"type": "boolean", "description": "The outlet valve is open: water is flowing to a household."},
+    "session": {
+      "type": ["object", "null"], "additionalProperties": false,
+      "required": ["card", "litres", "quota_left_l"],
+      "description": "The household card being served, or null.",
+      "properties": {
+        "card": {"$ref": "#/$defs/card"},
+        "litres": {"type": "number", "minimum": 0, "x-unit": "L", "description": "Dispensed so far in this session."},
+        "quota_left_l": {"type": "number", "minimum": 0, "x-unit": "L", "description": "What the card may still draw today, this session included."}
+      }
+    },
+    "filter": {
+      "type": "object", "additionalProperties": false, "required": ["tag", "state", "litres", "capacity_l"],
+      "description": "The filter cartridge (identified by its NTAG213 tag).",
+      "properties": {
+        "tag": {"type": ["string", "null"], "minLength": 1, "maxLength": 40, "description": "The filter's label, or the end of its tag's UID. null: no filter fitted."},
+        "state": {"enum": ["ok", "expiring", "expired", "none"], "description": "expiring: past 90 % of its capacity. expired or none: no water."},
+        "litres": {"type": ["number", "null"], "minimum": 0, "x-unit": "L", "description": "Water through this filter so far."},
+        "capacity_l": {"type": ["number", "null"], "exclusiveMinimum": 0, "x-unit": "L"}
+      }
+    },
+    "dispensed_today_l": {"type": "number", "minimum": 0, "x-unit": "L", "description": "All the water given out today (station's local day)."}
+  },
+  "$defs": {
+    "card": {"type": "string", "minLength": 1, "maxLength": 40, "description": "The card's label, or the end of its UID (…B2C3): never the whole UID."},
+    "quality": {
+      "type": "object", "additionalProperties": false, "required": ["verdict", "reason", "tds_ppm", "ph", "temp_c"],
+      "description": "Water quality at the outlet and the gate's verdict.",
+      "properties": {
+        "verdict": {"enum": ["ok", "bad", "unknown"], "description": "unknown: a sensor is missing or silent; the valve stays closed."},
+        "reason": {"type": "string", "maxLength": 80, "description": "Why, in a few words. Empty when ok."},
+        "tds_ppm": {"type": ["number", "null"], "minimum": 0, "x-unit": "ppm", "description": "Total dissolved solids, compensated to 25 °C."},
+        "ph": {"type": ["number", "null"], "minimum": 0, "maximum": 14},
+        "temp_c": {"type": ["number", "null"], "minimum": -10, "maximum": 80, "x-unit": "°C", "description": "Water temperature."}
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 2,
+  "type": "BADGE_TAP",
+  "data": {
+    "uid": "04A1B2C3",
+    "role": "unknown",
+    "action": "none",
+    "result": "denied"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.1",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 3,
+  "state": "LOCKED",
+  "hv_on": false,
+  "hv_level": 0.0,
+  "fog_idx_opt": null,
+  "fog_idx_virt": null,
+  "t_c": null,
+  "rh_pct": null,
+  "mass_g": null,
+  "rate_gpm": null,
+  "i_ua": null,
+  "p_w": null,
+  "e_wh": null,
+  "arc_risk": null,
+  "health": {
+    "onset_level": null,
+    "k_coef": null,
+    "score": null
+  },
+  "radar_presence": null,
+  "lid_closed": null,
+  "batt_pct": null
+}

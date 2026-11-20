@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/status.schema.json",
+  "title": "status",
+  "description": "Retained heartbeat. On connect the node registers an MQTT last will {schema_version, node_id, online: false}, which the broker publishes if the node drops. That last-will message has no ts, so ts is optional here.",
+  "x-topic": "aeroion/{node_id}/status",
+  "x-direction": "node -> station",
+  "x-rate": "every 10 s, and the last will on disconnect",
+  "x-retain": true,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "node_id", "online"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "node_id": {"$ref": "common.schema.json#/$defs/node_id"},
+    "online": {"type": "boolean"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "uptime_s": {"type": "integer", "minimum": 0, "x-unit": "s"},
+    "time_synced": {
+      "type": "boolean",
+      "description": "Clock synchronised with the station. The fog-front tracker ignores nodes that are not."
+    },
+    "buffered_msgs": {
+      "type": "integer", "minimum": 0,
+      "description": "Messages waiting in the offline buffer."
+    },
+    "rssi_dbm": {"type": "number", "x-unit": "dBm", "description": "Wi-Fi signal strength."}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 377,
+  "buffered": true,
+  "type": "FOG_CLEARED",
+  "data": {
+    "duration_s": 184.0
+  }
+}

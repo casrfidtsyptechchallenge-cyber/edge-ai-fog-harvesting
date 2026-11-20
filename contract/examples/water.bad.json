@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.2",
+  "ts": 1791747040265,
+  "quality": {"verdict": "bad", "reason": "TDS 940 ppm, above 500", "tds_ppm": 940.0, "ph": 7.1, "temp_c": 14.0},
+  "valve_open": false,
+  "session": null,
+  "filter": {"tag": "filter 3", "state": "expiring", "litres": 462.0, "capacity_l": 500.0},
+  "dispensed_today_l": 12.0
+}

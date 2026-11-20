@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "author": "AeroIon-Edge",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": { "flashSize": "8" } },
+    { "type": "wokwi-hx711", "id": "cell", "top": -110, "left": -260, "attrs": { "type": "5kg" } }
+  ],
+  "connections": [
+    [ "esp:17", "$serialMonitor:RX", "", [] ],
+    [ "esp:18", "$serialMonitor:TX", "", [] ],
+    [ "cell:VCC", "esp:3V3.1", "red", [] ],
+    [ "cell:GND", "esp:GND.1", "black", [] ],
+    [ "cell:DT", "esp:4", "green", [] ],
+    [ "cell:SCK", "esp:5", "blue", [] ]
+  ],
+  "serialMonitor": { "display": "always", "newline": "lf" },
+  "dependencies": {}
+}

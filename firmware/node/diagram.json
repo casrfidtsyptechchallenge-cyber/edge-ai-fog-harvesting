@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "AeroIon-Edge",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": { "flashSize": "8" } },
+    { "type": "wokwi-hx711", "id": "cell", "top": -110, "left": -260, "attrs": { "type": "5kg" } },
+    { "type": "wokwi-pir-motion-sensor", "id": "radar", "top": -10, "left": -240, "attrs": { "delayTime": "5" } },
+    { "type": "wokwi-slide-switch", "id": "lid", "top": 120, "left": -170, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 175, "left": -120, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledOn", "top": 160, "left": -200, "attrs": { "color": "red", "label": "HV ON" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 225, "left": -120, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledLevel", "top": 210, "left": -200, "attrs": { "color": "yellow", "label": "HV level" } },
+    { "type": "wokwi-potentiometer", "id": "fogKnob", "top": -40, "left": 170, "attrs": { "value": "0" } },
+    { "type": "wokwi-potentiometer", "id": "current", "top": 80, "left": 170, "attrs": { "value": "0" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "cell:VCC", "esp:3V3.1", "red", [] ],
+    [ "cell:GND", "esp:GND.1", "black", [] ],
+    [ "cell:DT", "esp:4", "green", [] ],
+    [ "cell:SCK", "esp:5", "blue", [] ],
+
+    [ "radar:VCC", "esp:3V3.1", "red", [] ],
+    [ "radar:GND", "esp:GND.1", "black", [] ],
+    [ "radar:OUT", "esp:7", "orange", [] ],
+
+    [ "lid:2", "esp:10", "violet", [] ],
+    [ "lid:1", "esp:GND.1", "black", [] ],
+
+    [ "esp:11", "r1:2", "red", [] ],
+    [ "r1:1", "ledOn:A", "red", [] ],
+    [ "ledOn:C", "esp:GND.1", "black", [] ],
+
+    [ "esp:12", "r2:2", "gold", [] ],
+    [ "r2:1", "ledLevel:A", "gold", [] ],
+    [ "ledLevel:C", "esp:GND.1", "black", [] ],
+
+    [ "fogKnob:VCC", "esp:3V3.2", "red", [] ],
+    [ "fogKnob:GND", "esp:GND.2", "black", [] ],
+    [ "fogKnob:SIG", "esp:1", "cyan", [] ],
+
+    [ "current:VCC", "esp:3V3.2", "red", [] ],
+    [ "current:GND", "esp:GND.2", "black", [] ],
+    [ "current:SIG", "esp:2", "magenta", [] ]
+  ],
+  "dependencies": {}
+}

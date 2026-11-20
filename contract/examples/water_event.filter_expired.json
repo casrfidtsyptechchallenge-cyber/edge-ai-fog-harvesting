@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.2",
+  "ts": 1791747040265,
+  "type": "FILTER_EXPIRED",
+  "data": {"filter": "filter 3", "litres": 500.2, "capacity_l": 500.0}
+}

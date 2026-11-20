@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 500,
+  "type": "FAULT",
+  "data": {
+    "code": "LID_OPEN",
+    "detail": "lid switch opened while HV on"
+  }
+}

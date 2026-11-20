@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.2",
+  "ts": 1791747040265,
+  "type": "CARD_DENIED",
+  "data": {"card": "…B2C3", "reason": "daily quota used (20 L)"}
+}

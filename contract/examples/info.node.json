@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "fw": "0.1.0",
+  "models": {
+    "arc": "arc-cnn-0.1",
+    "fog": null,
+    "health": "townsend-ls-0.1"
+  },
+  "position": {
+    "x_m": 0.0,
+    "y_m": 0.0
+  },
+  "sensors": [
+    "SHT45",
+    "HX711",
+    "INA219",
+    "LD2410",
+    "MFRC522"
+  ]
+}

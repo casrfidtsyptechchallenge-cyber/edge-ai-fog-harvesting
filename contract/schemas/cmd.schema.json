@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/cmd.schema.json",
+  "title": "cmd",
+  "description": "Request from the station to one node (aeroion/{node_id}/cmd) or to every node (aeroion/all/cmd). The node always answers with a CMD_ACK event. A command older than ts + ttl_s is answered with result expired and ignored. Commands are requests: the safety core (M3) can still refuse.",
+  "x-topic": "aeroion/{node_id}/cmd",
+  "x-direction": "station -> node",
+  "x-rate": "on demand",
+  "x-retain": false,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "cmd_id", "ts", "ttl_s", "type", "params"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "cmd_id": {
+      "type": "string", "minLength": 1, "maxLength": 36,
+      "description": "Unique id chosen by the sender; echoed in CMD_ACK."
+    },
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "ttl_s": {
+      "type": "integer", "minimum": 1, "maximum": 600, "x-unit": "s",
+      "description": "Time to live. The command is void after ts + ttl_s."
+    },
+    "type": {"$ref": "common.schema.json#/$defs/cmd_type"},
+    "params": {"type": "object"}
+  },
+  "allOf": [
+    {"if": {"properties": {"type": {"const": "SET_HINT"}}},
+     "then": {"properties": {"params": {"$ref": "#/$defs/SET_HINT"}}}},
+    {"if": {"properties": {"type": {"const": "PREARM"}}},
+     "then": {"properties": {"params": {"$ref": "#/$defs/PREARM"}}}},
+    {"if": {"properties": {"type": {"const": "LOCK"}}},
+     "then": {"properties": {"params": {"$ref": "#/$defs/LOCK"}}}},
+    {"if": {"properties": {"type": {"const": "SYNC_ALLOWLIST"}}},
+     "then": {"properties": {"params": {"$ref": "#/$defs/SYNC_ALLOWLIST"}}}},
+    {"if": {"properties": {"type": {"const": "TARE"}}},
+     "then": {"properties": {"params": {"$ref": "#/$defs/TARE"}}}}
+  ],
+  "$defs": {
+    "SET_HINT": {
+      "type": "object", "additionalProperties": false, "required": ["hv_level"],
+      "description": "Suggested HV level from the station optimiser, valid until the command expires.",
+      "properties": {
+        "hv_level": {"$ref": "common.schema.json#/$defs/fraction"}
+      }
+    },
+    "PREARM": {
+      "type": "object", "additionalProperties": false, "required": ["eta_s", "source_node"],
+      "description": "Fog is coming: an ARMED node lowers its detection threshold until eta_s + 60 s.",
+      "properties": {
+        "eta_s": {"type": "number", "minimum": 0, "maximum": 3600, "x-unit": "s",
+                  "description": "Expected fog arrival, seconds after ts."},
+        "source_node": {"$ref": "common.schema.json#/$defs/node_id",
+                        "description": "Node that saw the fog first."}
+      }
+    },
+    "LOCK": {
+      "type": "object", "additionalProperties": false, "required": ["reason"],
+      "description": "Go to LOCKED now (remote emergency stop).",
+      "properties": {
+        "reason": {"type": "string", "maxLength": 64}
+      }
+    },
+    "SYNC_ALLOWLIST": {
+      "type": "object", "additionalProperties": false, "required": ["version", "entries"],
+      "description": "Replace the node's copy of the badge list.",
+      "properties": {
+        "version": {"type": "integer", "minimum": 0, "description": "Increases with every change."},
+        "entries": {
+          "type": "array", "maxItems": 64,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["uid", "role"],
+            "properties": {
+              "uid": {"$ref": "common.schema.json#/$defs/uid"},
+              "role": {"$ref": "common.schema.json#/$defs/role"}
+            }
+          }
+        }
+      }
+    },
+    "TARE": {
+      "type": "object", "additionalProperties": false,
+      "description": "Zero the load cell (mass_g restarts from 0).",
+      "properties": {}
+    }
+  }
+}

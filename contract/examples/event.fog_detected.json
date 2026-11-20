@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 410,
+  "type": "FOG_DETECTED",
+  "data": {
+    "fog_idx": 0.32,
+    "source": "optical"
+  }
+}

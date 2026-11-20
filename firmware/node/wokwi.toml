@@ -1,0 +1,8 @@
+# Wokwi simulator settings (VS Code extension "Wokwi Simulator").
+# Build first with: pio run -e esp32s3   then in VS Code: F1 > "Wokwi: Start Simulator".
+[wokwi]
+version = 1
+firmware = '.pio/build/esp32s3/firmware.bin'
+elf = '.pio/build/esp32s3/firmware.elf'
+# Lets tools/serial_capture.py record the simulated serial port: --port rfc2217://localhost:4000
+rfc2217ServerPort = 4000

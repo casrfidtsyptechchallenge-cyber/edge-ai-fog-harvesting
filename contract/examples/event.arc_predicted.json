@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 413,
+  "type": "ARC_PREDICTED",
+  "data": {
+    "risk": 0.83,
+    "hv_level": 0.74
+  }
+}

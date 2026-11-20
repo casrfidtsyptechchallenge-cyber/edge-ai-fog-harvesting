@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "cmd_id": "tare-0001",
+  "ts": 1791747040265,
+  "ttl_s": 30,
+  "type": "TARE",
+  "params": {}
+}

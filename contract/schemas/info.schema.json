@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/info.schema.json",
+  "title": "info",
+  "description": "Retained birth message published once at boot: who the node is, where it is, what it runs. The fog-front tracker (M8) reads the positions from here.",
+  "x-topic": "aeroion/{node_id}/info",
+  "x-direction": "node -> station",
+  "x-rate": "once at boot",
+  "x-retain": true,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "node_id", "ts", "fw", "models", "position", "sensors"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "node_id": {"$ref": "common.schema.json#/$defs/node_id"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "fw": {"type": "string", "maxLength": 32, "description": "Firmware version."},
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arc", "fog", "health"],
+      "description": "Version of each on-device model; null when not installed.",
+      "properties": {
+        "arc": {"type": ["string", "null"], "maxLength": 32},
+        "fog": {"type": ["string", "null"], "maxLength": 32},
+        "health": {"type": ["string", "null"], "maxLength": 32}
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x_m", "y_m"],
+      "description": "Node position on the site map. +y points north, +x points east.",
+      "properties": {
+        "x_m": {"type": "number", "x-unit": "m"},
+        "y_m": {"type": "number", "x-unit": "m"}
+      }
+    },
+    "sensors": {
+      "type": "array",
+      "items": {"type": "string", "maxLength": 24},
+      "maxItems": 16,
+      "description": "Installed sensors, e.g. SHT45, HX711, INA219, LD2410."
+    }
+  }
+}

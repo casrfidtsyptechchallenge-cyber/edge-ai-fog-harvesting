@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 415,
+  "type": "CMD_ACK",
+  "data": {
+    "cmd_id": "prearm-0007",
+    "result": "accepted",
+    "reason": ""
+  }
+}

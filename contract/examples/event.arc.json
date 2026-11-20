@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "node_id": "n01",
+  "ts": 1791747040265,
+  "seq": 420,
+  "type": "ARC",
+  "data": {
+    "peak_ua": 1250.0,
+    "hv_level": 0.78,
+    "predicted": false
+  }
+}

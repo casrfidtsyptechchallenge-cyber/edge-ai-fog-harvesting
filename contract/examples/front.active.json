@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "ts": 1791747040265,
+  "active": true,
+  "direction_deg": 72.5,
+  "speed_mps": 1.1,
+  "fit_quality": 0.93,
+  "nodes_detected": [
+    "n01",
+    "n02"
+  ],
+  "eta_s": {
+    "n03": 11.8
+  }
+}

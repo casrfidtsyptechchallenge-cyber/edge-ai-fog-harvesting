@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "cmd_id": "prearm-0007",
+  "ts": 1791747040265,
+  "ttl_s": 120,
+  "type": "PREARM",
+  "params": {
+    "eta_s": 14.5,
+    "source_node": "n01"
+  }
+}

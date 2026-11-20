@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AeroIon-Edge station</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">AeroIon-Edge <span class="muted">station</span></div>
+  <div id="source" class="pill" role="status">connecting…</div>
+  <div id="clock" class="muted tabular"></div>
+  <div class="top-actions">
+    <button id="jury-toggle" type="button" class="btn">Jury view</button>
+    <button id="theme-toggle" type="button" class="btn" title="Light, dark or the system's setting">Theme: auto</button>
+    <button id="lock-all" type="button" class="btn btn-stop" hidden>LOCK all nodes</button>
+  </div>
+</header>
+
+<main>
+  <section class="tiles" aria-label="Station totals">
+    <div class="tile hero">
+      <div class="tile-label">Water collected</div>
+      <div class="hero-value"><span id="t-water">–</span><span class="unit"> g</span></div>
+      <div class="tile-sub" id="t-water-sub">on the collectors (since the last TARE)</div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Nodes harvesting</div>
+      <div class="tile-value" id="t-harvest">–</div>
+      <div class="tile-sub" id="t-harvest-sub"></div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Water per energy</div>
+      <div class="tile-value" id="t-gwh">–</div>
+      <div class="tile-sub" id="t-gwh-sub"></div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Arc warnings from the AI</div>
+      <div class="tile-value" id="t-arcs">–</div>
+      <div class="tile-sub" id="t-arcs-sub"></div>
+    </div>
+    <div class="tile">
+      <div class="tile-label">Fog front</div>
+      <div class="tile-value small" id="t-front">–</div>
+      <div class="tile-sub" id="t-front-sub"></div>
+    </div>
+  </section>
+
+  <section class="row two">
+    <div class="card">
+      <h2>Site map</h2>
+      <svg id="map" class="map" role="img" aria-label="Node positions and the fog front"></svg>
+      <p class="caption" id="map-caption"></p>
+    </div>
+    <div class="card">
+      <h2>Needs attention</h2>
+      <ul id="alerts" class="alerts"></ul>
+    </div>
+  </section>
+
+  <section class="card water-card" id="water-card" aria-label="Water point" hidden>
+    <div class="node-head">
+      <h2>Water point</h2>
+      <span id="w-verdict"></span>
+      <span id="w-age" class="age"></span>
+    </div>
+    <div class="node-reason" id="w-reason"></div>
+    <div class="metrics water-metrics" id="w-metrics"></div>
+  </section>
+
+  <section class="row charts" aria-label="Last minutes">
+    <div class="card chart-card" data-chart="fog"></div>
+    <div class="card chart-card" data-chart="water"></div>
+    <div class="card chart-card" data-chart="current"></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Nodes</h2>
+    <div id="nodes" class="nodes"></div>
+  </section>
+
+  <section class="card feed-card">
+    <h2>Events</h2>
+    <ol id="feed" class="feed"></ol>
+  </section>
+</main>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<div id="tooltip" class="tooltip" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

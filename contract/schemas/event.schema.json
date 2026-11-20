@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/event.schema.json",
+  "title": "event",
+  "description": "Something happened on a node. The shape of data depends on type.",
+  "x-topic": "aeroion/{node_id}/event",
+  "x-direction": "node -> station",
+  "x-rate": "on change",
+  "x-retain": false,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "node_id", "ts", "seq", "type", "data"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "node_id": {"$ref": "common.schema.json#/$defs/node_id"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "seq": {"$ref": "common.schema.json#/$defs/seq"},
+    "buffered": {
+      "type": "boolean",
+      "description": "True when replayed from the offline buffer. Omitted means false."
+    },
+    "type": {"$ref": "common.schema.json#/$defs/event_type"},
+    "data": {"type": "object"}
+  },
+  "allOf": [
+    {"if": {"properties": {"type": {"const": "FOG_DETECTED"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/FOG_DETECTED"}}}},
+    {"if": {"properties": {"type": {"const": "FOG_CLEARED"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/FOG_CLEARED"}}}},
+    {"if": {"properties": {"type": {"const": "ARC_PREDICTED"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/ARC_PREDICTED"}}}},
+    {"if": {"properties": {"type": {"const": "ARC"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/ARC"}}}},
+    {"if": {"properties": {"type": {"const": "STATE_CHANGE"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/STATE_CHANGE"}}}},
+    {"if": {"properties": {"type": {"const": "BADGE_TAP"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/BADGE_TAP"}}}},
+    {"if": {"properties": {"type": {"const": "FAULT"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/FAULT"}}}},
+    {"if": {"properties": {"type": {"const": "MAINT_ON"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/MAINT_ON"}}}},
+    {"if": {"properties": {"type": {"const": "MAINT_OFF"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/MAINT_OFF"}}}},
+    {"if": {"properties": {"type": {"const": "CMD_ACK"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/CMD_ACK"}}}}
+  ],
+  "$defs": {
+    "FOG_DETECTED": {
+      "type": "object", "additionalProperties": false, "required": ["fog_idx", "source"],
+      "description": "Fog index crossed the detection threshold.",
+      "properties": {
+        "fog_idx": {"$ref": "common.schema.json#/$defs/fraction", "description": "Fog index at detection."},
+        "source": {"$ref": "common.schema.json#/$defs/fog_source", "description": "Which sensor triggered it."}
+      }
+    },
+    "FOG_CLEARED": {
+      "type": "object", "additionalProperties": false, "required": ["duration_s"],
+      "description": "Fog index fell back below the release threshold.",
+      "properties": {
+        "duration_s": {"type": "number", "minimum": 0, "x-unit": "s", "description": "How long the fog lasted."}
+      }
+    },
+    "ARC_PREDICTED": {
+      "type": "object", "additionalProperties": false, "required": ["risk", "hv_level"],
+      "description": "The arc predictor raised a warning; the node backs off.",
+      "properties": {
+        "risk": {"$ref": "common.schema.json#/$defs/fraction", "description": "Model output."},
+        "hv_level": {"$ref": "common.schema.json#/$defs/fraction", "description": "HV level when it fired."}
+      }
+    },
+    "ARC": {
+      "type": "object", "additionalProperties": false, "required": ["peak_ua", "hv_level", "predicted"],
+      "description": "An arc actually happened.",
+      "properties": {
+        "peak_ua": {"type": "number", "minimum": 0, "x-unit": "µA", "description": "Peak collector current."},
+        "hv_level": {"$ref": "common.schema.json#/$defs/fraction", "description": "HV level at the arc."},
+        "predicted": {"type": "boolean",
+                      "description": "True if an ARC_PREDICTED came first. Used to measure the miss rate."}
+      }
+    },
+    "STATE_CHANGE": {
+      "type": "object", "additionalProperties": false, "required": ["from", "to", "reason"],
+      "description": "The node state machine changed state.",
+      "properties": {
+        "from": {"$ref": "common.schema.json#/$defs/state"},
+        "to": {"$ref": "common.schema.json#/$defs/state"},
+        "reason": {"type": "string", "maxLength": 64, "description": "Short human-readable cause."}
+      }
+    },
+    "BADGE_TAP": {
+      "type": "object", "additionalProperties": false, "required": ["uid", "role", "action", "result"],
+      "description": "An RFID tag was presented to the node reader.",
+      "properties": {
+        "uid": {"$ref": "common.schema.json#/$defs/uid"},
+        "role": {"$ref": "common.schema.json#/$defs/role"},
+        "action": {"$ref": "common.schema.json#/$defs/badge_action"},
+        "result": {"$ref": "common.schema.json#/$defs/badge_result"}
+      }
+    },
+    "FAULT": {
+      "type": "object", "additionalProperties": false, "required": ["code", "detail"],
+      "description": "Something is wrong; the node normally goes to SAFE.",
+      "properties": {
+        "code": {"$ref": "common.schema.json#/$defs/fault_code"},
+        "detail": {"type": "string", "maxLength": 120}
+      }
+    },
+    "MAINT_ON": {
+      "type": "object", "additionalProperties": false, "required": ["uid"],
+      "description": "A technician locked the node out for maintenance.",
+      "properties": {"uid": {"$ref": "common.schema.json#/$defs/uid"}}
+    },
+    "MAINT_OFF": {
+      "type": "object", "additionalProperties": false, "required": ["uid"],
+      "description": "The same technician released the lock-out.",
+      "properties": {"uid": {"$ref": "common.schema.json#/$defs/uid"}}
+    },
+    "CMD_ACK": {
+      "type": "object", "additionalProperties": false, "required": ["cmd_id", "result", "reason"],
+      "description": "Answer to a command from the station.",
+      "properties": {
+        "cmd_id": {"type": "string", "minLength": 1, "maxLength": 36},
+        "result": {"$ref": "common.schema.json#/$defs/ack_result"},
+        "reason": {"type": "string", "maxLength": 64, "description": "Empty when accepted."}
+      }
+    }
+  }
+}

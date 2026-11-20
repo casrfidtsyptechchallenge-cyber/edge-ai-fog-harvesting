@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aeroion.local/schemas/water_event.schema.json",
+  "title": "water_event",
+  "description": "Something happened at the water point (M9). The shape of data depends on type. Every event is also kept in the station's ledger.",
+  "x-topic": "aeroion/station/water_event",
+  "x-direction": "station -> dashboard",
+  "x-rate": "on change",
+  "x-retain": false,
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ts", "type", "data"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schema_version"},
+    "ts": {"$ref": "common.schema.json#/$defs/ts", "x-unit": "ms"},
+    "buffered": {"type": "boolean", "description": "True when sent again after the broker was unreachable (the ledger kept it). Omitted means false."},
+    "type": {"enum": ["DISPENSE", "CARD_DENIED", "QUALITY_CHANGE", "FILTER_CHANGE", "FILTER_EXPIRED"]},
+    "data": {"type": "object"}
+  },
+  "allOf": [
+    {"if": {"properties": {"type": {"const": "DISPENSE"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/DISPENSE"}}}},
+    {"if": {"properties": {"type": {"const": "CARD_DENIED"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/CARD_DENIED"}}}},
+    {"if": {"properties": {"type": {"const": "QUALITY_CHANGE"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/QUALITY_CHANGE"}}}},
+    {"if": {"properties": {"type": {"const": "FILTER_CHANGE"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/FILTER_CHANGE"}}}},
+    {"if": {"properties": {"type": {"const": "FILTER_EXPIRED"}}},
+     "then": {"properties": {"data": {"$ref": "#/$defs/FILTER_EXPIRED"}}}}
+  ],
+  "$defs": {
+    "DISPENSE": {
+      "type": "object", "additionalProperties": false, "required": ["card", "litres", "quota_left_l", "end"],
+      "description": "A household drew water; sent when the valve closes.",
+      "properties": {
+        "card": {"$ref": "water.schema.json#/$defs/card"},
+        "litres": {"type": "number", "minimum": 0, "x-unit": "L"},
+        "quota_left_l": {"type": "number", "minimum": 0, "x-unit": "L", "description": "Left for today after this."},
+        "end": {"enum": ["quota", "card", "idle", "timeout", "quality", "filter", "stop"],
+                "description": "Why the valve closed: quota reached, card tapped again, no flow, longest session, quality turned bad, filter expired, stopped by the station."}
+      }
+    },
+    "CARD_DENIED": {
+      "type": "object", "additionalProperties": false, "required": ["card", "reason"],
+      "description": "A card was tapped and no water was given.",
+      "properties": {
+        "card": {"$ref": "water.schema.json#/$defs/card"},
+        "reason": {"type": "string", "maxLength": 80}
+      }
+    },
+    "QUALITY_CHANGE": {
+      "type": "object", "additionalProperties": false, "required": ["verdict", "reason", "tds_ppm", "ph"],
+      "description": "The quality verdict changed.",
+      "properties": {
+        "verdict": {"enum": ["ok", "bad", "unknown"]},
+        "reason": {"type": "string", "maxLength": 80},
+        "tds_ppm": {"type": ["number", "null"], "minimum": 0, "x-unit": "ppm"},
+        "ph": {"type": ["number", "null"], "minimum": 0, "maximum": 14}
+      }
+    },
+    "FILTER_CHANGE": {
+      "type": "object", "additionalProperties": false, "required": ["filter", "capacity_l", "litres"],
+      "description": "A technician installed a filter cartridge (its tag was tapped after the technician's badge).",
+      "properties": {
+        "filter": {"$ref": "water.schema.json#/$defs/card"},
+        "capacity_l": {"type": "number", "exclusiveMinimum": 0, "x-unit": "L"},
+        "litres": {"type": "number", "minimum": 0, "x-unit": "L", "description": "Already used (a cartridge moved from elsewhere)."}
+      }
+    },
+    "FILTER_EXPIRED": {
+      "type": "object", "additionalProperties": false, "required": ["filter", "litres", "capacity_l"],
+      "description": "The filter reached its capacity: no more water until a new one is installed.",
+      "properties": {
+        "filter": {"$ref": "water.schema.json#/$defs/card"},
+        "litres": {"type": "number", "minimum": 0, "x-unit": "L"},
+        "capacity_l": {"type": "number", "exclusiveMinimum": 0, "x-unit": "L"}
+      }
+    }
+  }
+}

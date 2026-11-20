@@ -1,0 +1,677 @@
+[
+ {
+  "seed": 0,
+  "node": "node A: pulses 3x smaller",
+  "factory": {
+   "auc": 0.9547865100416825,
+   "soft_log_loss": 0.271088706778848,
+   "arcs_per_h": 16.0,
+   "warnings_per_h": 110.0,
+   "faults_per_h": 0.0,
+   "water": 0.6334658871327771
+  },
+  "local": {
+   "auc": 0.9590087154225085,
+   "soft_log_loss": 0.21108102810438925,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 224.0,
+   "faults_per_h": 0.0,
+   "water": 0.4564993045097578,
+   "adopted": 3,
+   "labels": 712,
+   "arc_labels": 39
+  },
+  "fed": {
+   "auc": 0.9547865100416825,
+   "soft_log_loss": 0.271088706778848,
+   "arcs_per_h": 16.0,
+   "warnings_per_h": 110.0,
+   "faults_per_h": 0.0,
+   "water": 0.6334658871327771,
+   "adopted": 0,
+   "labels": 711,
+   "arc_labels": 72
+  },
+  "naive": {
+   "auc": 0.9573541492989769,
+   "soft_log_loss": 0.3417413946353748,
+   "arcs_per_h": 36.0,
+   "warnings_per_h": 54.0,
+   "faults_per_h": 4.0,
+   "water": 0.44268067479867396,
+   "adopted": 2,
+   "labels": 6115,
+   "arc_labels": 275
+  }
+ },
+ {
+  "seed": 0,
+  "node": "node B: current x0.3, noise x2",
+  "factory": {
+   "auc": 0.8035883142262767,
+   "soft_log_loss": 0.5255703956758256,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 6136.0,
+   "faults_per_h": 0.0,
+   "water": 0.31587630724742694
+  },
+  "local": {
+   "auc": 0.8534944299853208,
+   "soft_log_loss": 0.49572343152979986,
+   "arcs_per_h": 18.0,
+   "warnings_per_h": 110.0,
+   "faults_per_h": 0.0,
+   "water": 0.552026932104789,
+   "adopted": 3,
+   "labels": 702,
+   "arc_labels": 49
+  },
+  "fed": {
+   "auc": 0.8452908160048991,
+   "soft_log_loss": 0.5337658990643686,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 2000.0,
+   "faults_per_h": 0.0,
+   "water": 0.3193235535426916,
+   "adopted": 2,
+   "labels": 689,
+   "arc_labels": 39
+  },
+  "naive": {
+   "auc": 0.8269085292819769,
+   "soft_log_loss": 0.5061238511301035,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 3694.0,
+   "faults_per_h": 0.0,
+   "water": 0.3162067623286002,
+   "adopted": 1,
+   "labels": 7176,
+   "arc_labels": 35
+  }
+ },
+ {
+  "seed": 0,
+  "node": "node C: like the training data",
+  "factory": {
+   "auc": 0.94834554710226,
+   "soft_log_loss": 0.25556582181058934,
+   "arcs_per_h": 24.0,
+   "warnings_per_h": 100.0,
+   "faults_per_h": 0.0,
+   "water": 0.6539482361586099
+  },
+  "local": {
+   "auc": 0.9439829939583799,
+   "soft_log_loss": 0.26776179352155216,
+   "arcs_per_h": 2.0,
+   "warnings_per_h": 128.0,
+   "faults_per_h": 0.0,
+   "water": 0.6193540414288995,
+   "adopted": 2,
+   "labels": 688,
+   "arc_labels": 45
+  },
+  "fed": {
+   "auc": 0.94834554710226,
+   "soft_log_loss": 0.25556582181058934,
+   "arcs_per_h": 24.0,
+   "warnings_per_h": 100.0,
+   "faults_per_h": 0.0,
+   "water": 0.6539482361586099,
+   "adopted": 0,
+   "labels": 645,
+   "arc_labels": 55
+  },
+  "naive": {
+   "auc": 0.94834554710226,
+   "soft_log_loss": 0.25556582181058934,
+   "arcs_per_h": 24.0,
+   "warnings_per_h": 100.0,
+   "faults_per_h": 0.0,
+   "water": 0.6539482361586099,
+   "adopted": 0,
+   "labels": 6576,
+   "arc_labels": 230
+  }
+ },
+ {
+  "seed": 1,
+  "node": "node A: pulses 3x smaller",
+  "factory": {
+   "auc": 0.9021155893071862,
+   "soft_log_loss": 0.44027646987547026,
+   "arcs_per_h": 32.0,
+   "warnings_per_h": 18.0,
+   "faults_per_h": 8.0,
+   "water": 0.3215428934038955
+  },
+  "local": {
+   "auc": 0.9133484985626654,
+   "soft_log_loss": 0.4845906482016449,
+   "arcs_per_h": 26.0,
+   "warnings_per_h": 2.0,
+   "faults_per_h": 8.0,
+   "water": 0.20317463419562212,
+   "adopted": 1,
+   "labels": 552,
+   "arc_labels": 14
+  },
+  "fed": {
+   "auc": 0.9021155893071862,
+   "soft_log_loss": 0.44027646987547026,
+   "arcs_per_h": 32.0,
+   "warnings_per_h": 18.0,
+   "faults_per_h": 8.0,
+   "water": 0.3215428934038955,
+   "adopted": 0,
+   "labels": 600,
+   "arc_labels": 19
+  },
+  "naive": {
+   "auc": 0.9140240325530407,
+   "soft_log_loss": 0.35232590150906495,
+   "arcs_per_h": 34.0,
+   "warnings_per_h": 66.0,
+   "faults_per_h": 2.0,
+   "water": 0.5211748692958599,
+   "adopted": 2,
+   "labels": 5784,
+   "arc_labels": 240
+  }
+ },
+ {
+  "seed": 1,
+  "node": "node B: current x0.3, noise x2",
+  "factory": {
+   "auc": 0.9367811300188716,
+   "soft_log_loss": 0.26406939855550715,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 4632.0,
+   "faults_per_h": 0.0,
+   "water": 0.31602222972415833
+  },
+  "local": {
+   "auc": 0.9367811300188716,
+   "soft_log_loss": 0.26406939855550715,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 4632.0,
+   "faults_per_h": 0.0,
+   "water": 0.31602222972415833,
+   "adopted": 0,
+   "labels": 676,
+   "arc_labels": 0
+  },
+  "fed": {
+   "auc": 0.9367811300188716,
+   "soft_log_loss": 0.26406939855550715,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 4632.0,
+   "faults_per_h": 0.0,
+   "water": 0.31602222972415833,
+   "adopted": 0,
+   "labels": 676,
+   "arc_labels": 0
+  },
+  "naive": {
+   "auc": 0.9367811300188716,
+   "soft_log_loss": 0.26406939855550715,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 4632.0,
+   "faults_per_h": 0.0,
+   "water": 0.31602222972415833,
+   "adopted": 0,
+   "labels": 7176,
+   "arc_labels": 0
+  }
+ },
+ {
+  "seed": 1,
+  "node": "node C: like the training data",
+  "factory": {
+   "auc": 0.9576847106821235,
+   "soft_log_loss": 0.25533690854669766,
+   "arcs_per_h": 10.0,
+   "warnings_per_h": 114.0,
+   "faults_per_h": 0.0,
+   "water": 0.6396451168861014
+  },
+  "local": {
+   "auc": 0.9586238121299567,
+   "soft_log_loss": 0.24353869302766595,
+   "arcs_per_h": 10.0,
+   "warnings_per_h": 114.0,
+   "faults_per_h": 0.0,
+   "water": 0.6372238546105653,
+   "adopted": 1,
+   "labels": 688,
+   "arc_labels": 56
+  },
+  "fed": {
+   "auc": 0.9578391959798995,
+   "soft_log_loss": 0.26526044190978065,
+   "arcs_per_h": 22.0,
+   "warnings_per_h": 102.0,
+   "faults_per_h": 0.0,
+   "water": 0.6454081374279128,
+   "adopted": 1,
+   "labels": 704,
+   "arc_labels": 58
+  },
+  "naive": {
+   "auc": 0.9584302701626947,
+   "soft_log_loss": 0.31298082592975135,
+   "arcs_per_h": 38.0,
+   "warnings_per_h": 86.0,
+   "faults_per_h": 0.0,
+   "water": 0.6491316118569314,
+   "adopted": 2,
+   "labels": 6541,
+   "arc_labels": 260
+  }
+ },
+ {
+  "seed": 2,
+  "node": "node A: pulses 3x smaller",
+  "factory": {
+   "auc": 0.874604709674883,
+   "soft_log_loss": 0.6411943655527239,
+   "arcs_per_h": 44.0,
+   "warnings_per_h": 10.0,
+   "faults_per_h": 8.0,
+   "water": 0.30262352110271395
+  },
+  "local": {
+   "auc": 0.9007288595353226,
+   "soft_log_loss": 0.40456891024586505,
+   "arcs_per_h": 4.0,
+   "warnings_per_h": 224.0,
+   "faults_per_h": 0.0,
+   "water": 0.435627519216002,
+   "adopted": 2,
+   "labels": 472,
+   "arc_labels": 30
+  },
+  "fed": {
+   "auc": 0.874604709674883,
+   "soft_log_loss": 0.6411943655527239,
+   "arcs_per_h": 44.0,
+   "warnings_per_h": 10.0,
+   "faults_per_h": 8.0,
+   "water": 0.30262352110271395,
+   "adopted": 0,
+   "labels": 420,
+   "arc_labels": 39
+  },
+  "naive": {
+   "auc": 0.8997339833051592,
+   "soft_log_loss": 0.5225575379682417,
+   "arcs_per_h": 38.0,
+   "warnings_per_h": 82.0,
+   "faults_per_h": 2.0,
+   "water": 0.5128790755848078,
+   "adopted": 3,
+   "labels": 6507,
+   "arc_labels": 305
+  }
+ },
+ {
+  "seed": 2,
+  "node": "node B: current x0.3, noise x2",
+  "factory": {
+   "auc": 0.9300260395710952,
+   "soft_log_loss": 0.28198197076138,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 7062.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158379919505508
+  },
+  "local": {
+   "auc": 0.9300260395710952,
+   "soft_log_loss": 0.28198197076138,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 7062.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158379919505508,
+   "adopted": 0,
+   "labels": 696,
+   "arc_labels": 0
+  },
+  "fed": {
+   "auc": 0.9300260395710952,
+   "soft_log_loss": 0.28198197076138,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 7062.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158379919505508,
+   "adopted": 0,
+   "labels": 696,
+   "arc_labels": 0
+  },
+  "naive": {
+   "auc": 0.9300260395710952,
+   "soft_log_loss": 0.28198197076138,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 7062.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158379919505508,
+   "adopted": 0,
+   "labels": 7176,
+   "arc_labels": 0
+  }
+ },
+ {
+  "seed": 2,
+  "node": "node C: like the training data",
+  "factory": {
+   "auc": 0.9565594824927762,
+   "soft_log_loss": 0.3920172625760488,
+   "arcs_per_h": 2.0,
+   "warnings_per_h": 124.0,
+   "faults_per_h": 0.0,
+   "water": 0.6371682989425471
+  },
+  "local": {
+   "auc": 0.9565357152830882,
+   "soft_log_loss": 0.24213208436129777,
+   "arcs_per_h": 8.0,
+   "warnings_per_h": 116.0,
+   "faults_per_h": 0.0,
+   "water": 0.6548861250703604,
+   "adopted": 3,
+   "labels": 701,
+   "arc_labels": 60
+  },
+  "fed": {
+   "auc": 0.9556272136927648,
+   "soft_log_loss": 0.22454163190013693,
+   "arcs_per_h": 4.0,
+   "warnings_per_h": 120.0,
+   "faults_per_h": 0.0,
+   "water": 0.656983110347124,
+   "adopted": 4,
+   "labels": 704,
+   "arc_labels": 60
+  },
+  "naive": {
+   "auc": 0.9566598989537081,
+   "soft_log_loss": 0.2533375322498328,
+   "arcs_per_h": 6.0,
+   "warnings_per_h": 118.0,
+   "faults_per_h": 0.0,
+   "water": 0.6556325686561576,
+   "adopted": 5,
+   "labels": 7176,
+   "arc_labels": 80
+  }
+ },
+ {
+  "seed": 3,
+  "node": "node A: pulses 3x smaller",
+  "factory": {
+   "auc": 0.8839250092515222,
+   "soft_log_loss": 0.5877000121159379,
+   "arcs_per_h": 42.0,
+   "warnings_per_h": 10.0,
+   "faults_per_h": 8.0,
+   "water": 0.33618570944662707
+  },
+  "local": {
+   "auc": 0.899052860900977,
+   "soft_log_loss": 0.4005487205617957,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 364.0,
+   "faults_per_h": 0.0,
+   "water": 0.392714188399775,
+   "adopted": 1,
+   "labels": 640,
+   "arc_labels": 54
+  },
+  "fed": {
+   "auc": 0.9046904830352631,
+   "soft_log_loss": 0.4061182832629227,
+   "arcs_per_h": 4.0,
+   "warnings_per_h": 154.0,
+   "faults_per_h": 0.0,
+   "water": 0.4716223263223367,
+   "adopted": 3,
+   "labels": 621,
+   "arc_labels": 71
+  },
+  "naive": {
+   "auc": 0.9046368061422881,
+   "soft_log_loss": 0.5067609120334529,
+   "arcs_per_h": 40.0,
+   "warnings_per_h": 62.0,
+   "faults_per_h": 2.0,
+   "water": 0.5363689163664681,
+   "adopted": 5,
+   "labels": 5575,
+   "arc_labels": 315
+  }
+ },
+ {
+  "seed": 3,
+  "node": "node B: current x0.3, noise x2",
+  "factory": {
+   "auc": 0.7613534818825054,
+   "soft_log_loss": 0.4733488273993153,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 5532.0,
+   "faults_per_h": 0.0,
+   "water": 0.3159639361773098
+  },
+  "local": {
+   "auc": 0.782848083736583,
+   "soft_log_loss": 0.4891793218424549,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 2068.0,
+   "faults_per_h": 0.0,
+   "water": 0.3187780867108866,
+   "adopted": 1,
+   "labels": 701,
+   "arc_labels": 10
+  },
+  "fed": {
+   "auc": 0.7776739896113126,
+   "soft_log_loss": 0.48487642760961563,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 3238.0,
+   "faults_per_h": 0.0,
+   "water": 0.3163646891465096,
+   "adopted": 1,
+   "labels": 701,
+   "arc_labels": 10
+  },
+  "naive": {
+   "auc": 0.7613534818825054,
+   "soft_log_loss": 0.4733488273993153,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 5532.0,
+   "faults_per_h": 0.0,
+   "water": 0.3159639361773098,
+   "adopted": 0,
+   "labels": 7176,
+   "arc_labels": 15
+  }
+ },
+ {
+  "seed": 3,
+  "node": "node C: like the training data",
+  "factory": {
+   "auc": 0.9336615098650874,
+   "soft_log_loss": 0.26888802764910413,
+   "arcs_per_h": 10.0,
+   "warnings_per_h": 306.0,
+   "faults_per_h": 0.0,
+   "water": 0.5724631392204207
+  },
+  "local": {
+   "auc": 0.9387170045401038,
+   "soft_log_loss": 0.2696904210826959,
+   "arcs_per_h": 2.0,
+   "warnings_per_h": 368.0,
+   "faults_per_h": 0.0,
+   "water": 0.4323753788550091,
+   "adopted": 1,
+   "labels": 712,
+   "arc_labels": 56
+  },
+  "fed": {
+   "auc": 0.9366489338916871,
+   "soft_log_loss": 0.26293697214807676,
+   "arcs_per_h": 6.0,
+   "warnings_per_h": 120.0,
+   "faults_per_h": 0.0,
+   "water": 0.6033128398254395,
+   "adopted": 2,
+   "labels": 709,
+   "arc_labels": 56
+  },
+  "naive": {
+   "auc": 0.9358713740306935,
+   "soft_log_loss": 0.3079489276186415,
+   "arcs_per_h": 26.0,
+   "warnings_per_h": 56.0,
+   "faults_per_h": 4.0,
+   "water": 0.41201499189119917,
+   "adopted": 3,
+   "labels": 6876,
+   "arc_labels": 250
+  }
+ },
+ {
+  "seed": 4,
+  "node": "node A: pulses 3x smaller",
+  "factory": {
+   "auc": 0.8780352563231203,
+   "soft_log_loss": 0.4646819381628029,
+   "arcs_per_h": 42.0,
+   "warnings_per_h": 140.0,
+   "faults_per_h": 2.0,
+   "water": 0.4557525904560952
+  },
+  "local": {
+   "auc": 0.8695406165891852,
+   "soft_log_loss": 0.45266556060470586,
+   "arcs_per_h": 12.0,
+   "warnings_per_h": 126.0,
+   "faults_per_h": 0.0,
+   "water": 0.578242965026596,
+   "adopted": 1,
+   "labels": 660,
+   "arc_labels": 67
+  },
+  "fed": {
+   "auc": 0.8780352563231203,
+   "soft_log_loss": 0.4646819381628029,
+   "arcs_per_h": 42.0,
+   "warnings_per_h": 140.0,
+   "faults_per_h": 2.0,
+   "water": 0.4557525904560952,
+   "adopted": 0,
+   "labels": 635,
+   "arc_labels": 71
+  },
+  "naive": {
+   "auc": 0.8592193857669757,
+   "soft_log_loss": 0.4769584040206776,
+   "arcs_per_h": 16.0,
+   "warnings_per_h": 114.0,
+   "faults_per_h": 0.0,
+   "water": 0.5938096474080736,
+   "adopted": 3,
+   "labels": 4080,
+   "arc_labels": 292
+  }
+ },
+ {
+  "seed": 4,
+  "node": "node B: current x0.3, noise x2",
+  "factory": {
+   "auc": 0.8292544863943767,
+   "soft_log_loss": 0.4872662723213348,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 20234.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158449120072017
+  },
+  "local": {
+   "auc": 0.8292544863943767,
+   "soft_log_loss": 0.4872662723213348,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 20234.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158449120072017,
+   "adopted": 0,
+   "labels": 688,
+   "arc_labels": 0
+  },
+  "fed": {
+   "auc": 0.8292544863943767,
+   "soft_log_loss": 0.4872662723213348,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 20234.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158449120072017,
+   "adopted": 0,
+   "labels": 688,
+   "arc_labels": 0
+  },
+  "naive": {
+   "auc": 0.8292544863943767,
+   "soft_log_loss": 0.4872662723213348,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 20234.0,
+   "faults_per_h": 0.0,
+   "water": 0.3158449120072017,
+   "adopted": 0,
+   "labels": 7176,
+   "arc_labels": 0
+  }
+ },
+ {
+  "seed": 4,
+  "node": "node C: like the training data",
+  "factory": {
+   "auc": 0.9622942254082039,
+   "soft_log_loss": 0.22513324794618536,
+   "arcs_per_h": 0.0,
+   "warnings_per_h": 1100.0,
+   "faults_per_h": 0.0,
+   "water": 0.44419079992719346
+  },
+  "local": {
+   "auc": 0.9624812425328554,
+   "soft_log_loss": 0.2179544326101251,
+   "arcs_per_h": 2.0,
+   "warnings_per_h": 124.0,
+   "faults_per_h": 0.0,
+   "water": 0.5967328938219132,
+   "adopted": 1,
+   "labels": 700,
+   "arc_labels": 70
+  },
+  "fed": {
+   "auc": 0.9620352050975707,
+   "soft_log_loss": 0.20686687380931829,
+   "arcs_per_h": 2.0,
+   "warnings_per_h": 124.0,
+   "faults_per_h": 0.0,
+   "water": 0.6060325896791235,
+   "adopted": 1,
+   "labels": 700,
+   "arc_labels": 70
+  },
+  "naive": {
+   "auc": 0.9636403026682596,
+   "soft_log_loss": 0.19674358459772673,
+   "arcs_per_h": 10.0,
+   "warnings_per_h": 116.0,
+   "faults_per_h": 0.0,
+   "water": 0.6103649492986346,
+   "adopted": 4,
+   "labels": 7176,
+   "arc_labels": 95
+  }
+ }
+]

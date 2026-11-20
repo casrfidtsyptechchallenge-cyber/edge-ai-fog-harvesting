@@ -1,0 +1,11 @@
+# Wokwi: the ESP32-S3 of a two-chip node (M7 part 2). The MCX is played by the PC: tools/mcx_sim.py.
+#   1. pio run -e esp32s3-link-wokwi              (in firmware/node)
+#   2. VS Code: F1 > "Wokwi: Select Config File" > this file, then F1 > "Wokwi: Start Simulator"
+#   3. python tools/mcx_sim.py --port rfc2217://localhost:4000     (see docs/link.md)
+[wokwi]
+version = 1
+firmware = '../../.pio/build/esp32s3-link-wokwi/firmware.bin'
+elf = '../../.pio/build/esp32s3-link-wokwi/firmware.elf'
+# The serial monitor is wired to GPIO 17/18, the UART that goes to the MCX on the real node:
+# mcx_sim.py connects to it here.
+rfc2217ServerPort = 4000

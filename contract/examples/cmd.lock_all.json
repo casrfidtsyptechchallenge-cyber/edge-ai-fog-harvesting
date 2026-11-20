@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "cmd_id": "lock-0001",
+  "ts": 1791747040265,
+  "ttl_s": 30,
+  "type": "LOCK",
+  "params": {
+    "reason": "emergency stop from dashboard"
+  }
+}
